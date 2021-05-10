@@ -13,8 +13,8 @@
         <columns>
           <TableColumn fx:id="colPostalCode" prefWidth="120.0" resizable="false" text="Postal Code/Zip" />
           <TableColumn fx:id="colTown" prefWidth="120.0" resizable="false" text="Town/Place" />
-            <TableColumn fx:id="colCountyNumber" prefWidth="120.0" resizable="false" text="County Number" />
-            <TableColumn fx:id="colCounty" prefWidth="120.0" resizable="false" text="County/State" />
+            <TableColumn fx:id="colMunicipalityNumber" prefWidth="120.0" resizable="false" text="Municipality #" />
+            <TableColumn fx:id="colMunicipality" prefWidth="120.0" resizable="false" text="Municipality" />
             <TableColumn fx:id="colCategory" prefWidth="120.0" resizable="false" text="Category" />
         </columns>
       </TableView>

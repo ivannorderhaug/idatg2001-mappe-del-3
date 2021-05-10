@@ -4,8 +4,8 @@ public class PostalAddress{
 
     private String postalCode;
     private String town;
-    private String countyNumber;
-    private String county;
+    private String municipalityNumber;
+    private String municipality;
     private String category;
 
     /**
@@ -13,16 +13,16 @@ public class PostalAddress{
      * Instantiates new object of class.
      * @param postalCode
      * @param town
-     * @param countyNumber
-     * @param county
+     * @param municipalityNumber
+     * @param municipality
      * @param category
      */
-    public PostalAddress(String postalCode, String town, String countyNumber, String county, String category) {
-        if(isValid(postalCode) && isValid(town) && isValid(countyNumber) && isValid(county) && isValid(category)) {
+    public PostalAddress(String postalCode, String town, String municipalityNumber, String municipality, String category) {
+        if(isValid(postalCode) && isValid(town) && isValid(municipalityNumber) && isValid(municipality) && isValid(category)) {
             this.postalCode = postalCode;
             this.town = town;
-            this.countyNumber = countyNumber;
-            this.county = county;
+            this.municipalityNumber = municipalityNumber;
+            this.municipality = municipality;
             this.category = category;
         } else {
             throw new IllegalArgumentException("Invalid parameters");
@@ -59,16 +59,16 @@ public class PostalAddress{
      * Accessor method for countyNumber
      * @return county number
      */
-    public String getCountyNumber() {
-        return countyNumber;
+    public String getMunicipalityNumber() {
+        return municipalityNumber;
     }
 
     /**
      * Accessor method for county
      * @return county
      */
-    public String getCounty() {
-        return county;
+    public String getMunicipality() {
+        return municipality;
     }
 
     /**

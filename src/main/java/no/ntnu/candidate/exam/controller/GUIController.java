@@ -15,7 +15,7 @@ import java.util.stream.Collectors;
 public class GUIController {
 
     @FXML
-    private TableColumn<PostalAddress, String> colCountyNumber;
+    private TableColumn<PostalAddress, String> colMunicipalityNumber;
 
     @FXML
     private TableColumn<PostalAddress, String> colPostalCode;
@@ -24,7 +24,7 @@ public class GUIController {
     private TextField searchBar;
 
     @FXML
-    private TableColumn<PostalAddress, String> colCounty;
+    private TableColumn<PostalAddress, String> colMunicipality;
 
     @FXML
     private TableView<PostalAddress> tableView;
@@ -37,21 +37,19 @@ public class GUIController {
 
     private PostalAddressRegister par;
 
-
-
     @FXML // This method is called by the FXMLLoader when initialization is complete
     void initialize() {
         /* Configures Table View */
         colPostalCode.setCellValueFactory(new PropertyValueFactory<>("postalCode"));
         colTown.setCellValueFactory(new PropertyValueFactory<>("town"));
-        colCountyNumber.setCellValueFactory(new PropertyValueFactory<>("countyNumber"));
-        colCounty.setCellValueFactory(new PropertyValueFactory<>("county"));
+        colMunicipalityNumber.setCellValueFactory(new PropertyValueFactory<>("municipalityNumber"));
+        colMunicipality.setCellValueFactory(new PropertyValueFactory<>("municipality"));
         colCategory.setCellValueFactory(new PropertyValueFactory<>("category"));
 
         colPostalCode.setReorderable(false);
         colTown.setReorderable(false);
-        colCountyNumber.setReorderable(false);
-        colCounty.setReorderable(false);
+        colMunicipalityNumber.setReorderable(false);
+        colMunicipality.setReorderable(false);
         colCategory.setReorderable(false);
 
         //Instantiates new PostalAddressRegister
@@ -60,9 +58,7 @@ public class GUIController {
 
         tableView.setItems(par.getAddresses());
 
-        searchBar.textProperty().addListener((observable, oldValue, newValue) -> {
-            search(newValue);
-        });
+        searchBar.textProperty().addListener((observable, oldValue, newValue) -> search(newValue));
     }
 
     /**
@@ -73,10 +69,7 @@ public class GUIController {
 
         if(!parameter.equals("") && !parameter.isEmpty()){
             List<PostalAddress> result = par.getAddresses().stream().filter(
-                    postalAddress -> postalAddress.getPostalCode().startsWith(parameter.toUpperCase()) ||
-                            postalAddress.getTown().startsWith(parameter.toUpperCase()) ||
-                            postalAddress.getCountyNumber().startsWith(parameter.toUpperCase()) ||
-                            postalAddress.getCounty().startsWith(parameter.toUpperCase())).collect(Collectors.toList());
+                    postalAddress -> postalAddress.getPostalCode().startsWith(parameter.toUpperCase()) || postalAddress.getTown().startsWith(parameter.toUpperCase())).collect(Collectors.toList());
 
             tableView.setItems(FXCollections.observableList(result));
 
