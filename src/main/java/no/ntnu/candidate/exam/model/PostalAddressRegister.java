@@ -27,6 +27,15 @@ public class PostalAddressRegister {
     }
 
     /**
+     * Method for adding to register
+     */
+    public void addPostalAddress(PostalAddress pa){
+        if(pa != null){
+            par.add(pa);
+        }
+    }
+    /**
+     *
      * Method for reading from file, and adding entries to register
      * @param path
      */
@@ -41,7 +50,9 @@ public class PostalAddressRegister {
                 String cols;
                 while ((cols = br.readLine()) != null) {
                     String[] fields = cols.split("\t");
-                    par.add(new PostalAddress(fields[0], fields[1],fields[2],fields[3],fields[4]));
+                    if(fields.length == 5) {
+                        addPostalAddress(new PostalAddress(fields[0], fields[1], fields[2], fields[3], fields[4]));
+                    }
                 }
             }catch (IOException ioException) {
                 ioException.printStackTrace();
