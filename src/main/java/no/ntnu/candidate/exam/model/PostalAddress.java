@@ -1,6 +1,6 @@
 package no.ntnu.candidate.exam.model;
 
-public class PostalAddress {
+public class PostalAddress{
 
     private String postalCode;
     private String city;
@@ -29,27 +29,52 @@ public class PostalAddress {
         }
     }
 
+    /**
+     * Method for validating a string
+     * @param s
+     * @return
+     */
     public static boolean isValid( final String s ) {
         // Null-safe, short-circuit evaluation.
         return s != null || !s.trim().isEmpty();
     }
 
+    /**
+     * Accessor method for postalCode
+     * @return postal code
+     */
     public String getPostalCode() {
         return postalCode;
     }
 
+    /**
+     * Accessor method for city
+     * @return city
+     */
     public String getCity() {
         return city;
     }
 
+    /**
+     * Accessor method for countyNumber
+     * @return county number
+     */
     public String getCountyNumber() {
         return countyNumber;
     }
 
+    /**
+     * Accessor method for county
+     * @return county
+     */
     public String getCounty() {
         return county;
     }
 
+    /**
+     * Accessor method for category
+     * @return category
+     */
     public String getCategory() {
         return category;
     }

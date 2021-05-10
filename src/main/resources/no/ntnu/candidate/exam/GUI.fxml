@@ -7,7 +7,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="no.ntnu.candidate.exam.controller.GUIController">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #222222;" stylesheets="@css/darkmode.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="no.ntnu.candidate.exam.controller.GUIController">
    <children>
       <TableView fx:id="tableView" layoutY="115.0" prefHeight="285.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="115.0">
         <columns>
@@ -18,8 +18,8 @@
             <TableColumn fx:id="colCategory" prefWidth="120.0" resizable="false" text="Category" />
         </columns>
       </TableView>
-      <TextField fx:id="searchBar" layoutX="145.0" layoutY="57.0" prefHeight="36.0" prefWidth="310.0" />
-      <Label layoutX="168.0" layoutY="14.0" text="Postal Address Finder">
+      <TextField fx:id="searchBar" layoutX="145.0" layoutY="57.0" prefHeight="36.0" prefWidth="310.0" promptText="Search" />
+      <Label layoutX="168.0" layoutY="14.0" text="Postal Address Finder" textFill="WHITE">
          <font>
             <Font name="System Bold" size="26.0" />
          </font>

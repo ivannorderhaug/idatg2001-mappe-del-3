@@ -1,5 +1,6 @@
 package no.ntnu.candidate.exam.controller;
 
+import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -8,10 +9,8 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import no.ntnu.candidate.exam.model.PostalAddress;
 import no.ntnu.candidate.exam.model.PostalAddressRegister;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
-import java.io.IOException;
+import java.util.List;
+import java.util.stream.Collectors;
 
 public class GUIController {
 
@@ -38,7 +37,9 @@ public class GUIController {
 
     private PostalAddressRegister par;
 
-    @FXML
+
+
+    @FXML // This method is called by the FXMLLoader when initialization is complete
     void initialize() {
         /* Configures Table View */
         colPostalCode.setCellValueFactory(new PropertyValueFactory<>("postalCode"));
@@ -55,29 +56,35 @@ public class GUIController {
 
         //Instantiates new PostalAddressRegister
         par = new PostalAddressRegister();
-
-        readFromFile();
+        par.readFromFile("src/main/resources/no/ntnu/candidate/exam/file/Postnummerregister-ansi.txt");
 
         tableView.setItems(par.getAddresses());
+
+        searchBar.textProperty().addListener((observable, oldValue, newValue) -> {
+            search(newValue);
+        });
     }
 
-    private void readFromFile(){
-        File file = new File("src/main/resources/no/ntnu/candidate/exam/file/Postnummerregister-ansi.txt");
+    /**
+     * Search method for finding postal addresses that matches the criteria(parameter).
+     * @param parameter
+     */
+    void search(String parameter){
 
-        if(file != null) {
-            BufferedReader br;
-            try {
-                br = new BufferedReader(new FileReader(file));
+        if(!parameter.equals("") && !parameter.isEmpty()){
+            List<PostalAddress> result = par.getAddresses().stream().filter(
+                    postalAddress -> postalAddress.getPostalCode().startsWith(parameter.toUpperCase()) ||
+                            postalAddress.getCity().startsWith(parameter.toUpperCase()) ||
+                            postalAddress.getCountyNumber().startsWith(parameter.toUpperCase()) ||
+                            postalAddress.getCounty().startsWith(parameter.toUpperCase())).collect(Collectors.toList());
 
-                String cols;
-                while ((cols = br.readLine()) != null) {
-                    String[] fields = cols.split("\t");
-                    par.getAddresses().add(new PostalAddress(fields[0], fields[1],fields[2],fields[3],fields[4]));
-                }
-            }catch (IOException ioException) {
-                ioException.printStackTrace();
-            }
+            tableView.setItems(FXCollections.observableList(result));
+
+        } else {
+            //Shows all addresses
+            tableView.setItems(par.getAddresses());
         }
+
     }
 
 
