@@ -25,7 +25,7 @@ public class PostalAddress {
             this.county = county;
             this.category = category;
         } else {
-            throw new IllegalArgumentException("Invalid parameters,");
+            throw new IllegalArgumentException("Invalid parameters");
         }
     }
 
