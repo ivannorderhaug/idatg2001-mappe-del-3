@@ -3,7 +3,7 @@ package no.ntnu.candidate.exam.model;
 public class PostalAddress{
 
     private String postalCode;
-    private String city;
+    private String town;
     private String countyNumber;
     private String county;
     private String category;
@@ -12,15 +12,15 @@ public class PostalAddress{
      * Constructor for class PostAddress
      * Instantiates new object of class.
      * @param postalCode
-     * @param city
+     * @param town
      * @param countyNumber
      * @param county
      * @param category
      */
-    public PostalAddress(String postalCode, String city, String countyNumber, String county, String category) {
-        if(isValid(postalCode) && isValid(city) && isValid(countyNumber) && isValid(county) && isValid(category)) {
+    public PostalAddress(String postalCode, String town, String countyNumber, String county, String category) {
+        if(isValid(postalCode) && isValid(town) && isValid(countyNumber) && isValid(county) && isValid(category)) {
             this.postalCode = postalCode;
-            this.city = city;
+            this.town = town;
             this.countyNumber = countyNumber;
             this.county = county;
             this.category = category;
@@ -51,8 +51,8 @@ public class PostalAddress{
      * Accessor method for city
      * @return city
      */
-    public String getCity() {
-        return city;
+    public String getTown() {
+        return town;
     }
 
     /**

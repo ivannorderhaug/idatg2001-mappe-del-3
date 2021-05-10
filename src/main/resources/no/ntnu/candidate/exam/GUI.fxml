@@ -11,10 +11,10 @@
    <children>
       <TableView fx:id="tableView" layoutY="115.0" prefHeight="285.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="115.0">
         <columns>
-          <TableColumn fx:id="colPostalCode" prefWidth="120.0" resizable="false" text="Postal Code" />
-          <TableColumn fx:id="colCity" prefWidth="120.0" resizable="false" text="City" />
+          <TableColumn fx:id="colPostalCode" prefWidth="120.0" resizable="false" text="Postal Code/Zip" />
+          <TableColumn fx:id="colTown" prefWidth="120.0" resizable="false" text="Town/Place" />
             <TableColumn fx:id="colCountyNumber" prefWidth="120.0" resizable="false" text="County Number" />
-            <TableColumn fx:id="colCounty" prefWidth="120.0" resizable="false" text="County" />
+            <TableColumn fx:id="colCounty" prefWidth="120.0" resizable="false" text="County/State" />
             <TableColumn fx:id="colCategory" prefWidth="120.0" resizable="false" text="Category" />
         </columns>
       </TableView>

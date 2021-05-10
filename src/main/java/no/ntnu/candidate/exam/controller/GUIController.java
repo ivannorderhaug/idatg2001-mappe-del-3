@@ -33,7 +33,7 @@ public class GUIController {
     private TableColumn<PostalAddress, String> colCategory;
 
     @FXML
-    private TableColumn<PostalAddress, String> colCity;
+    private TableColumn<PostalAddress, String> colTown;
 
     private PostalAddressRegister par;
 
@@ -43,20 +43,20 @@ public class GUIController {
     void initialize() {
         /* Configures Table View */
         colPostalCode.setCellValueFactory(new PropertyValueFactory<>("postalCode"));
-        colCity.setCellValueFactory(new PropertyValueFactory<>("city"));
+        colTown.setCellValueFactory(new PropertyValueFactory<>("town"));
         colCountyNumber.setCellValueFactory(new PropertyValueFactory<>("countyNumber"));
         colCounty.setCellValueFactory(new PropertyValueFactory<>("county"));
         colCategory.setCellValueFactory(new PropertyValueFactory<>("category"));
 
         colPostalCode.setReorderable(false);
-        colCity.setReorderable(false);
+        colTown.setReorderable(false);
         colCountyNumber.setReorderable(false);
         colCounty.setReorderable(false);
         colCategory.setReorderable(false);
 
         //Instantiates new PostalAddressRegister
         par = new PostalAddressRegister();
-        par.readFromFile("src/main/resources/no/ntnu/candidate/exam/file/Postnummerregister-ansi.txt");
+        par.readFromFile("/no/ntnu/candidate/exam/file/Postnummerregister-ansi.txt");
 
         tableView.setItems(par.getAddresses());
 
@@ -74,7 +74,7 @@ public class GUIController {
         if(!parameter.equals("") && !parameter.isEmpty()){
             List<PostalAddress> result = par.getAddresses().stream().filter(
                     postalAddress -> postalAddress.getPostalCode().startsWith(parameter.toUpperCase()) ||
-                            postalAddress.getCity().startsWith(parameter.toUpperCase()) ||
+                            postalAddress.getTown().startsWith(parameter.toUpperCase()) ||
                             postalAddress.getCountyNumber().startsWith(parameter.toUpperCase()) ||
                             postalAddress.getCounty().startsWith(parameter.toUpperCase())).collect(Collectors.toList());
 

@@ -2,11 +2,9 @@ package no.ntnu.candidate.exam.model;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import no.ntnu.candidate.exam.App;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
 
 public class PostalAddressRegister {
 
@@ -33,12 +31,12 @@ public class PostalAddressRegister {
      * @param path
      */
     public void readFromFile(String path){
-        File file = new File(path);
+        InputStream is = App.class.getResourceAsStream(path);
 
-        if(file != null) {
+        if(is != null) {
             BufferedReader br;
             try {
-                br = new BufferedReader(new FileReader(file));
+                br = new BufferedReader(new InputStreamReader(is));
 
                 String cols;
                 while ((cols = br.readLine()) != null) {
