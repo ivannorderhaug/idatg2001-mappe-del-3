@@ -18,14 +18,14 @@ public class PostalAddress{
      * @param category
      */
     public PostalAddress(String postalCode, String town, String municipalityNumber, String municipality, String category) {
-        if(isValid(postalCode) && isValid(town) && isValid(municipalityNumber) && isValid(municipality) && isValid(category)) {
+        if(!empty(postalCode) && !empty(town) && !empty(municipalityNumber) && !empty(municipality) && !empty(category)) {
             this.postalCode = postalCode;
             this.town = town;
             this.municipalityNumber = municipalityNumber;
             this.municipality = municipality;
             this.category = category;
         } else {
-            throw new IllegalArgumentException("Invalid parameters");
+            throw new IllegalArgumentException("Parameters should not be null, or empty");
         }
     }
 
@@ -34,9 +34,9 @@ public class PostalAddress{
      * @param s
      * @return
      */
-    public static boolean isValid( final String s ) {
+    public static boolean empty(final String s ) {
         // Null-safe, short-circuit evaluation.
-        return s != null || !s.trim().isEmpty();
+        return s == null || s.trim().isEmpty();
     }
 
     /**
