@@ -25,7 +25,7 @@ public class PostalAddress{
             this.municipality = municipality;
             this.category = category;
         } else {
-            throw new IllegalArgumentException("Parameters should not be null, or empty");
+            throw new IllegalArgumentException("Parameters should not be null, nor empty");
         }
     }
 

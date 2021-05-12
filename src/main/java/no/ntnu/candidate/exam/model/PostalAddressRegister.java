@@ -32,6 +32,8 @@ public class PostalAddressRegister {
     public void addPostalAddress(PostalAddress pa){
         if(pa != null){
             par.add(pa);
+        } else {
+            throw new IllegalArgumentException("Parameter cannot be null!");
         }
     }
     /**
