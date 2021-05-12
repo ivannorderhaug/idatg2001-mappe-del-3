@@ -6,6 +6,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.KeyCode;
 import no.ntnu.candidate.exam.model.PostalAddress;
 import no.ntnu.candidate.exam.model.PostalAddressRegister;
 
@@ -58,18 +59,41 @@ public class GUIController {
 
         tableView.setItems(par.getAddresses());
 
-        searchBar.textProperty().addListener((observable, oldValue, newValue) -> search(newValue));
+        searchBar.textProperty().addListener((observable, oldValue, newValue) -> {
+
+            searchBar.setOnKeyReleased(event -> {
+                if (event.getCode() == KeyCode.ENTER){
+                    exactSearch();
+                }
+            });
+            search(newValue);
+
+
+        });
+    }
+    /**
+     * Search method for finding postal addresses or postal codes that matches the search input exactly.
+     */
+    @FXML
+    void exactSearch(){
+        if(!searchBar.getText().equals("") && !searchBar.getText().isEmpty()){
+            List<PostalAddress> result = par.getAddresses().stream().filter(
+                    postalAddress -> postalAddress.getPostalCode().equalsIgnoreCase(searchBar.getText()) || postalAddress.getTown().equalsIgnoreCase(searchBar.getText())).collect(Collectors.toList());
+
+            tableView.setItems(FXCollections.observableList(result));
+
+        }
     }
 
     /**
-     * Search method for finding postal addresses that matches the criteria(parameter).
-     * @param parameter
+     * Search method for finding postal addresses or postal codes that starts with @param
+     * @param s
      */
-    void search(String parameter){
+    void search(String s){
 
-        if(!parameter.equals("") && !parameter.isEmpty()){
+        if(!s.equals("") && !s.isEmpty()){
             List<PostalAddress> result = par.getAddresses().stream().filter(
-                    postalAddress -> postalAddress.getPostalCode().startsWith(parameter.toUpperCase()) || postalAddress.getTown().startsWith(parameter.toUpperCase())).collect(Collectors.toList());
+                    postalAddress -> postalAddress.getPostalCode().startsWith(s.toUpperCase()) || postalAddress.getTown().startsWith(s.toUpperCase())).collect(Collectors.toList());
 
             tableView.setItems(FXCollections.observableList(result));
 
